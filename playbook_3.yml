@@ -1,0 +1,21 @@
+- hosts: RU
+  tasks:
+   - name: cache update
+     ansible.builtin.apt:
+      update_cache: yes
+     tags: [apt]
+   
+   - name: install nodejs
+     ansible.builtin.apt:
+      name: nodejs
+      state: present
+      update_cache: no
+     become: yes
+     tags: [apt, nodejs]
+      
+   
+   - name: create users
+     ansible.builtin.user:
+      name: arya
+      create_home: no
+     tags: users
